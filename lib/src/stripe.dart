@@ -113,7 +113,7 @@ class Stripe {
   /// https://stripe.com/docs/payments/payment-intents/android-manual
   Future<Map<String, dynamic>> authenticatePayment(String paymentIntentClientSecret) async {
     final paymentIntent = await api.retrievePaymentIntent(paymentIntentClientSecret);
-    if (paymentIntent['status'] != "requires_action") return Future.value(paymentIntent);
+    if (paymentIntent['status'] != "requires_action" && paymentIntent['status'] != "requires_source_action") return Future.value(paymentIntent);
     final nextAction = paymentIntent['next_action'];
     // ignore: deprecated_member_use_from_same_package
     return handlePaymentIntent(nextAction);
