@@ -166,7 +166,7 @@ class Stripe {
       }
     });
 
-    await launch(url);
+    await launch(url, forceSafariVC: false);
     return completer.future;
   }
 }
